@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz web</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <!--  starting of webpage  -->
+    <!-- styling with tailwind css -->
+    <!-- main container -->
+
+    <div class="flex flex-col justify-center items-center p-4 m-4 bg-blue-200 rounded-lg shadow-md" id="conatiner">
+
+        <!-- beging of the quiz -->
+        <h1 class="text-3xl font-bold">quiz app</h1>
+        <p class="text-lg">Answer the questions below</p>
+
+        <!-- start button -->
+        <button id="start-btn"
+            class="h-10 w-25 flex flex-col justify-center items-center bg-blue-400 rounded-lg p-2 hover:bg-blue-600">Start
+            Quiz</button>
+
+        <!-- question container -->
+        <div id="quiz-container"
+            class="hidden w-100% h-100% flex flex-col justify-center items-center p-4 m-4 bg-red-300 rounded-lg">
+
+            <!-- display of the question -->
+            <h2 class="text-2xl font-bold text-black" id="question-text"></h2>
+
+            <!-- display of the choices -->
+            <ul class="bg-green-400" id="choice-list"></ul>
+
+            <!-- button for next question -->
+            <button id="next-btn" class="bg-purple-400 hover:bg-purple-500 rounded-lg w-100%">Next Question</button>
+            <!-- button for previous question -->
+            <button id="previous" class="bg-purple-400 hover:bg-purple-500 rounded-lg w-100%">Previous Question</button>
+        </div>
+
+        <!-- result container -->
+        <div id="result-container"
+            class="hidden w-100% h-100% flex flex-col justify-center bg-green-300 rounded-lg p-4 m-4">
+            <h2>Your Score:</h2>
+            <p id="score"></p>
+
+            <!-- button for restarting the quiz -->
+            <button id="restart-btn" class="bg-purple-400 hover:bg-purple-500 rounded-lg w-100%">Restart Quiz</button>
+        </div>
+    </div>
+
+    <!-- ending of the quiz -->
+    <script src="script.js"></script>
+    <!-- ending of the webpage -->
+
+</body>
+
+</html>
