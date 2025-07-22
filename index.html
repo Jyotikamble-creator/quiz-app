@@ -2,59 +2,67 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quiz web</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz App</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
 
-<body>
-    <!--  starting of webpage  -->
-    <!-- styling with tailwind css -->
-    <!-- main container -->
 
-    <div class="flex flex-col justify-center items-center p-4 m-4 bg-blue-200 rounded-lg shadow-md" id="conatiner">
+<body class="bg-gradient-to-br from-blue-100 to-blue-300 min-h-screen flex flex-col items-center justify-start">
+ <!-- Hero/Header Section -->
+  <header class="w-full bg-gradient-to-r from-indigo-500 to-blue-600 py-8 shadow-md">
+    <div class="max-w-4xl mx-auto text-center px-4">
+      <h1 class="text-5xl font-extrabold text-white mb-2 drop-shadow-md">🧠 Boost Your Brainpower!</h1>
+      <p class="text-xl text-blue-100 font-medium">Challenge yourself with our interactive quiz and discover how much you really know.</p>
+    </div>
+  </header>
+    
+  <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-xl w-full text-center space-y-6 mt-12">
 
-        <!-- beging of the quiz -->
-        <h1 class="text-3xl font-bold">quiz app</h1>
-        <p class="text-lg">Answer the questions below</p>
-
-        <!-- start button -->
-        <button id="start-btn"
-            class="h-10 w-25 flex flex-col justify-center items-center bg-blue-400 rounded-lg p-2 hover:bg-blue-600">Start
-            Quiz</button>
-
-        <!-- question container -->
-        <div id="quiz-container"
-            class="hidden w-100% h-100% flex flex-col justify-center items-center p-4 m-4 bg-red-300 rounded-lg">
-
-            <!-- display of the question -->
-            <h2 class="text-2xl font-bold text-black" id="question-text"></h2>
-
-            <!-- display of the choices -->
-            <ul class="bg-green-400" id="choice-list"></ul>
-
-            <!-- button for next question -->
-            <button id="next-btn" class="bg-purple-400 hover:bg-purple-500 rounded-lg w-100%">Next Question</button>
-            <!-- button for previous question -->
-            <button id="previous" class="bg-purple-400 hover:bg-purple-500 rounded-lg w-100%">Previous Question</button>
-        </div>
-
-        <!-- result container -->
-        <div id="result-container"
-            class="hidden w-100% h-100% flex flex-col justify-center bg-green-300 rounded-lg p-4 m-4">
-            <h2>Your Score:</h2>
-            <p id="score"></p>
-
-            <!-- button for restarting the quiz -->
-            <button id="restart-btn" class="bg-purple-400 hover:bg-purple-500 rounded-lg w-100%">Restart Quiz</button>
-        </div>
+    <!-- Header -->
+    <div>
+      <h1 class="text-4xl font-extrabold text-blue-700 mb-2">QUIZ APP</h1>
+      <p class="text-gray-600">Test your knowledge and learn something new!</p>
     </div>
 
-    <!-- ending of the quiz -->
-    <script src="script.js"></script>
-    <!-- ending of the webpage -->
+    <!-- Start Button -->
+    <button id="start-btn"
+      class="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold shadow hover:bg-blue-700 transition duration-200">
+      Start Quiz
+    </button>
 
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="hidden space-y-4 text-left">
+      <h2 id="question-text" class="text-2xl font-semibold text-gray-800"></h2>
+      <ul id="choice-list" class="space-y-3">
+        <!-- Choices will appear here -->
+      </ul>
+      <div class="flex justify-between gap-4 pt-4">
+        <button id="previous"
+          class="flex-1 px-4 py-2 bg-gray-300 text-gray-800 rounded-xl hover:bg-gray-400 transition">Previous</button>
+        <button id="next-btn"
+          class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">Next</button>
+      </div>
+    </div>
+
+    <!-- Result Container -->
+    <div id="result-container" class="hidden space-y-4">
+      <h2 class="text-2xl font-bold text-green-700">Your Score:</h2>
+      <p id="score" class="text-xl text-gray-800"></p>
+      <button id="restart-btn"
+        class="px-6 py-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition">Restart Quiz</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
