@@ -89,6 +89,51 @@ cd quizmaster
 ---
 ## 📸 Demo Preview
 
+<img width="1919"  alt="layout" src="https://github.com/user-attachments/assets/33de6444-d1bf-4f54-8531-385784f602d3" />
+
+<img width="1919"  alt="layout" src="https://github.com/user-attachments/assets/ac1020c4-26bd-4d91-895f-6179efac5d16" />
+
+<img width="1918"  alt="Screenshot 2025-07-23 194714" src="https://github.com/user-attachments/assets/4f38d4b7-e815-4e34-9696-758cba80b1f3" />
+
+<img width="864" height="703" alt="Screenshot 2025-07-23 194749" src="https://github.com/user-attachments/assets/265132fe-9d41-4171-a20b-26c812944fd1" />
+
+<img width="1916" height="911" alt="Screenshot 2025-07-23 194812" src="https://github.com/user-attachments/assets/4345466a-f900-4c5e-9bb0-d1bc4e5e61a3" />
+
+
+
+
+<img width="970" height="686" alt="Screenshot 2025-07-23 194756" src="https://github.com/user-attachments/assets/f09f008a-f794-4a98-a4aa-8526ca16bfda" />
+
+<img width="920" height="864" alt="Screenshot 2025-07-23 194820" src="https://github.com/user-attachments/assets/05019aec-60b8-45af-93ea-4a5e761ead16" />
+
+
+
+<img width="906" height="782" alt="Screenshot 2025-07-23 194854" src="https://github.com/user-attachments/assets/6ac02430-49b4-42da-bc6b-acce535ba35b" />
+
+
+<img width="870" height="885" alt="Screenshot 2025-07-23 194831" src="https://github.com/user-attachments/assets/0bda0de7-043a-4503-bdf4-d17ab86ad820" />
+
+<img width="1919" height="910" alt="Screenshot 2025-07-23 194910" src="https://github.com/user-attachments/assets/187c47a4-21fb-48ab-a8b9-a1520f269eaa" />
+
+
+<img width="1030" height="748" alt="Screenshot 2025-07-23 194916" src="https://github.com/user-attachments/assets/94ffe340-851a-44cd-8589-37dd1ff87766" />
+
+
+
+
+<img width="1022" height="791" alt="Screenshot 2025-07-23 194921" src="https://github.com/user-attachments/assets/92330e51-cdee-4326-9492-f7d2a3417978" />
+
+
+
+<img width="963" height="893" alt="Screenshot 2025-07-23 194929" src="https://github.com/user-attachments/assets/2ff24518-1177-4d03-80bc-d2368084eaf4" />
+
+
+<img width="1044" height="758" alt="Screenshot 2025-07-23 195000" src="https://github.com/user-attachments/assets/483c7fee-846a-458a-8636-f6b5432f4e18" />
+
+
+
+
+
 
 
 ---
