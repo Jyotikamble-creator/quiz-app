@@ -56,7 +56,7 @@ quizmaster/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Jyotikamble-creator/quiz-app
+git clone (https://github.com/Jyotikamble-creator/quiz-app)
 
 cd quizmaster
 ```
