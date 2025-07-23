@@ -56,7 +56,7 @@ quizmaster/
 ### 1. Clone the repository
 
 ```bash
-git clone (https://github.com/Jyotikamble-creator/quiz-app)
+git clone https://github.com/Jyotikamble-creator/quiz-app
 
 cd quizmaster
 ```
@@ -89,7 +89,34 @@ cd quizmaster
 ---
 ## 📸 Demo Preview
 
+<img width="1918"  alt="llayout " src="https://github.com/user-attachments/assets/73d480a1-b5aa-4a06-877b-e5b9ffcfa926" />
 
+<img width="1918"  alt="catogory" src="https://github.com/user-attachments/assets/12c19abd-4c6e-4f8f-976c-4005d662a513" />
+
+<img width="1918"  alt="level" src="https://github.com/user-attachments/assets/f5abfdbc-e4c1-4da0-83ce-78e1b1751fb6" />
+
+<img width="1918"  alt="question" src="https://github.com/user-attachments/assets/edb4693c-25ce-4bd3-91e1-e36d2c3ee294" />
+
+<img width="1918"  alt="correct" src="https://github.com/user-attachments/assets/779cbb4a-0fc8-4daf-a62c-8379d8d92e38" />
+
+<img width="1918"  alt="wrong" src="https://github.com/user-attachments/assets/2f765e1a-6f0a-4069-a336-2e6df52ae0ed" />
+
+<img width="1918"  alt="Score" src="https://github.com/user-attachments/assets/da85d2cd-c1c6-4f8a-aa37-532310fbeb2a" />
+
+
+<img width="1918"  alt="dlayout" src="https://github.com/user-attachments/assets/c768e9ab-3806-46e6-9c83-c7b98f2982cb" />
+
+<img width="1918"  alt="cato" src="https://github.com/user-attachments/assets/4af8c104-c3c3-4284-a127-094b9684cbc3" />
+
+<img width="1918"  alt="level" src="https://github.com/user-attachments/assets/b684afdc-8c07-4fd3-8a34-8097455f77f8" />
+
+<img width="1918"  alt="ques" src="https://github.com/user-attachments/assets/ca1b728c-f6c0-4946-89ce-19a634dd57e4" />
+
+<img width="1918"  alt="corr" src="https://github.com/user-attachments/assets/b02ad8cf-53e4-4561-8f61-92389d49ca9c" />
+
+<img width="1918"  alt="wrong" src="https://github.com/user-attachments/assets/5e115852-7434-4e04-896b-6adeeaf84e50" />
+
+<img width="1918"  alt="Score" src="https://github.com/user-attachments/assets/f2edf5af-8a1f-4c42-bb89-7dfad0977131" />
 
 ---
 # 🙌 Acknowledgements
