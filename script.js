@@ -1,221 +1,199 @@
-// // script og the page begins here
-// // This script handles the quiz functionality, including fetching questions, displaying them, and handling user interactions
-// // grabing the elements from the DOM
-// document.addEventListener("DOMContentLoaded", () => {
-//     const startBtn = document.getElementById("start-btn");
-//     const nextBtn = document.getElementById("next-btn");
-//     const previousBtn = document.getElementById("previous-btn");
-//     const restartBtn = document.getElementById("restart-btn");
-//     const questionContainer = document.getElementById("quiz-container");
-//     const questionText = document.getElementById("question-text");
-//     const choiceList = document.getElementById("choice-list");
-//     const resultContainer = document.getElementById("result-container");
-//     const scoreDisplay = document.getElementById("score");
-
-
-//     let questions = [];
-//     let currentQuestionIndex = 0;
-//     let score = 0;
-
-//     startBtn.addEventListener("click", startQuiz);
-//     nextBtn.addEventListener("click", () => navigateQuestion(1));
-//     previousBtn.addEventListener("click", () => navigateQuestion(-1))
-//     restartBtn.addEventListener("click", restartQuiz);
-
-//     // Fetch questions from the API
-//     // function to fetch questions from the  API
-//     async function fetchQuestions() {
-//         try {
-//             const response = await fetch("https://opentdb.com/api.php?amount=15&category=18&type=multiple");
-//             const data = await response.json();
-//             questions = data.results.map(q => ({
-//                 question: q.question,
-//                 choices: [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5),
-//                 answer: q.correct_answer
-//             }));
-//         } catch (error) {
-//             console.error("Error fetching questions:", error);
-//         }
-//     }
-
-//     // function to start the quiz
-//     async function startQuiz() {
-//         await fetchQuestions();
-//         startBtn.classList.add("hidden");
-//         questionContainer.classList.remove("hidden");
-//         nextBtn.classList.remove("hidden");
-//         previousBtn.classList.remove("hidden");
-//         showQuestion();
-//     }
-
-//     // function to show the current question and choices
-//     function showQuestion() {
-//         if (currentQuestionIndex >= questions.length) {
-//             showResult();
-//             return;
-//         }
-
-//         const currentQuestion = questions[currentQuestionIndex];
-//         questionText.innerHTML = currentQuestion.question;
-//         choiceList.innerHTML = "";
-
-//         currentQuestion.choices.forEach(choice => {
-//             const li = document.createElement("li");
-//             li.textContent = choice;
-//             li.classList.add("cursor-pointer", "p-2", "m-2", "bg-white", "rounded", "hover:bg-gray-200");
-//             li.addEventListener("click", () => selectAnswer(choice));
-//             choiceList.appendChild(li);
-//         });
-//     }
-
-//     // function to select an answer and check if it's correct
-//     function selectAnswer(choice) {
-//         const correctAnswer = questions[currentQuestionIndex].answer;
-//         if (choice === correctAnswer) {
-//             score++;
-//         }
-//         nextBtn.disabled = false;
-//     }
-//     // function to navigate to the next questions
-//     function navigateQuestion(direction) {
-//         currentQuestionIndex += direction;
-//         if (currentQuestionIndex < questions.length) {
-//             showQuestion();
-//         } else {
-//             showResult();
-//         }
-//     }
-
-//     // function to show the previous question
-//     function showPreviousQuestion(direction) {
-//         currentQuestionIndex += direction;
-//         if (currentQuestionIndex >= 0) {
-//             showQuestion();
-
-//         } else {
-//             currentQuestionIndex = 0;
-//         }
-//     }
-//     // function to show the result 
-//     function showResult() {
-//         questionContainer.classList.add("hidden");
-//         resultContainer.classList.remove("hidden");
-//         scoreDisplay.textContent = `${score} out of ${questions.length}`;
-//         restartBtn.classList.remove("hidden");
-//     }
-
-//     // function to restart the quiz
-//     function restartQuiz() {
-//         currentQuestionIndex = 0;
-//         score = 0;
-//         resultContainer.classList.add("hidden");
-//         startQuiz();
-//     }
-// });
-// // script of the page ends here
+// script for the page 
+// call and store all the classes defined by id 
 document.addEventListener("DOMContentLoaded", () => {
-  const startBtn = document.getElementById("start-btn");
-  const nextBtn = document.getElementById("next-btn");
-  const previousBtn = document.getElementById("previous-btn");
-  const restartBtn = document.getElementById("restart-btn");
-  const questionText = document.getElementById("question-text");
-  const choiceList = document.getElementById("choice-list");
-  const quizContainer = document.getElementById("quiz-container");
-  const resultContainer = document.getElementById("result-container");
-  const startSection = document.getElementById("start-section");
-  const scoreDisplay = document.getElementById("score");
+    const startBtn = document.getElementById("start-btn");
+    const quizContainer = document.getElementById("quiz-container");
+    const questionText = document.getElementById("question-text");
+    const choiceList = document.getElementById("choice-list");
+    const nextBtn = document.getElementById("next-btn");
+    const prevBtn = document.getElementById("previous-btn");
+    const restartBtn = document.getElementById("restart-btn");
+    const resultContainer = document.getElementById("result-container");
+    const scoreDisplay = document.getElementById("score");
+    const progressBar = document.getElementById("progress-bar");
+    const timerDisplay = document.getElementById("timer");
+    const category = document.getElementById("category");
+    const difficulty = document.getElementById("difficulty");
+    const darkToggle = document.getElementById("dark-toggle");
 
-  let questions = [];
-  let currentQuestionIndex = 0;
-  let score = 0;
-  let userAnswers = [];
+    let questions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let selectedAnswers = {};
+    let timer;
+    let totalTime = 60;
 
-  // Fetch questions from API
-  async function fetchQuestions() {
-    try {
-      const res = await fetch("https://opentdb.com/api.php?amount=10&category=18&type=multiple");
-      const data = await res.json();
-      questions = data.results.map(q => ({
-        question: q.question,
-        choices: [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5),
-        answer: q.correct_answer
-      }));
-    } catch (err) {
-      console.error("Error fetching questions:", err);
-    }
-  }
-
-  // Start quiz
-  async function startQuiz() {
-    await fetchQuestions();
-    startSection.classList.add("hidden");
-    quizContainer.classList.remove("hidden");
-    userAnswers = Array(questions.length).fill(null);
-    showQuestion();
-  }
-
-  // Show current question
-  function showQuestion() {
-    const current = questions[currentQuestionIndex];
-    questionText.innerHTML = `Q${currentQuestionIndex + 1}: ${current.question}`;
-    choiceList.innerHTML = "";
-
-    current.choices.forEach(choice => {
-      const li = document.createElement("li");
-      li.textContent = choice;
-      li.className =
-        "cursor-pointer px-4 py-2 rounded border border-gray-300 hover:bg-blue-100 transition";
-      if (userAnswers[currentQuestionIndex] === choice) {
-        li.classList.add("bg-blue-300", "font-semibold");
-      }
-
-      li.addEventListener("click", () => {
-        userAnswers[currentQuestionIndex] = choice;
-        if (choice === current.answer) {
-          score++;
-        } else if (userAnswers[currentQuestionIndex] !== current.answer && score > 0) {
-          score--;
+    // Theme toggle for Tailwind (toggle on <html>)
+    function setTheme(isDark) {
+        const html = document.documentElement;
+        if (isDark) {
+            html.classList.add("dark");
+            darkToggle.textContent = "☀️ Light Mode";
+            localStorage.setItem("quiz-theme", "dark");
+        } else {
+            html.classList.remove("dark");
+            darkToggle.textContent = "🌙 Dark Mode";
+            localStorage.setItem("quiz-theme", "light");
         }
-        showQuestion(); // refresh to update selection color
-        nextBtn.disabled = false;
-      });
+    }
 
-      choiceList.appendChild(li);
+    // Initial theme load
+    setTheme(localStorage.getItem("quiz-theme") === "dark");
+
+    darkToggle.addEventListener("click", () => {
+        const isDark = !document.documentElement.classList.contains("dark");
+        setTheme(isDark);
     });
 
-    previousBtn.disabled = currentQuestionIndex === 0;
-    nextBtn.disabled = !userAnswers[currentQuestionIndex];
-  }
+    //   intialize the quiz
+    startBtn.addEventListener("click", async () => {
+        await fetchQuestions();
+        currentQuestionIndex = 0;
+        score = 0;
+        selectedAnswers = {};
+        document.getElementById("filters").classList.add("hidden");
+        document.getElementById("start-section").classList.add("hidden");
+        quizContainer.classList.remove("hidden");
+        resultContainer.classList.add("hidden");
+        startTimer();
+        showQuestion();
+    });
 
-  // Navigate next/prev
-  function navigateQuestion(direction) {
-    currentQuestionIndex += direction;
+    //   this button fects the next question
+    nextBtn.addEventListener("click", () => {
+        if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            showQuestion();
+        } else {
+            clearInterval(timer);
+            showResult();
+        }
+    });
 
-    if (currentQuestionIndex >= questions.length) {
-      showResult();
-    } else {
-      showQuestion();
+    //   this button moves back to last question
+    prevBtn.addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            showQuestion();
+        }
+    });
+
+    //   this button restarts the quiz
+    restartBtn.addEventListener("click", () => {
+        document.getElementById("filters").classList.remove("hidden");
+        document.getElementById("start-section").classList.remove("hidden");
+        quizContainer.classList.add("hidden");
+        resultContainer.classList.add("hidden");
+        progressBar.style.width = "0%";
+        timerDisplay.textContent = "⏳ Time Left: 00:00";
+
+        // Reset theme for restart (preserves last mode)
+        setTheme(localStorage.getItem("quiz-theme") === "dark");
+    });
+
+    //   timmer for the quiz 
+    function startTimer() {
+        let timeLeft = totalTime;
+        updateTimer(timeLeft);
+        timer = setInterval(() => {
+            timeLeft--;
+            updateTimer(timeLeft);
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                showResult();
+            }
+        }, 1000);
     }
-  }
 
-  // Show result
-  function showResult() {
-    quizContainer.classList.add("hidden");
-    resultContainer.classList.remove("hidden");
-    scoreDisplay.textContent = `${score} / ${questions.length}`;
-  }
+    //   updates the timer as the quiz starts
+    function updateTimer(seconds) {
+        const min = String(Math.floor(seconds / 60)).padStart(2, "0");
+        const sec = String(seconds % 60).padStart(2, "0");
+        timerDisplay.textContent = `⏳ Time Left: ${min}:${sec}`;
+    }
 
-  // Restart quiz
-  function restartQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    resultContainer.classList.add("hidden");
-    startQuiz();
-  }
+    //   fetching the questions from the url
+    async function fetchQuestions() {
 
-  // Event Listeners
-  startBtn.addEventListener("click", startQuiz);
-  nextBtn.addEventListener("click", () => navigateQuestion(1));
-  previousBtn.addEventListener("click", () => navigateQuestion(-1));
-  restartBtn.addEventListener("click", restartQuiz);
+        // url in not directly called it is stored in the variable
+        let url = "https://opentdb.com/api.php?amount=10&type=multiple";
+        if (category.value) url += `&category=${category.value}`;
+        if (difficulty.value) url += `&difficulty=${difficulty.value}`;
+
+        //   fetching the questions
+        const res = await fetch(url);
+        const data = await res.json();
+        questions = data.results.map((q) => ({
+            question: decodeHTML(q.question),
+            choices: shuffle([...q.incorrect_answers.map(decodeHTML), decodeHTML(q.correct_answer)]),
+            answer: decodeHTML(q.correct_answer),
+        }));
+    }
+
+    //   displaying the question in the question bank
+    function showQuestion() {
+        const q = questions[currentQuestionIndex];
+        questionText.innerHTML = q.question;
+        choiceList.innerHTML = "";
+        prevBtn.disabled = currentQuestionIndex === 0;
+        nextBtn.disabled = !selectedAnswers.hasOwnProperty(currentQuestionIndex);
+
+        q.choices.forEach((choice) => {
+            const li = document.createElement("li");
+            li.textContent = choice;
+            li.className = "p-2 rounded cursor-pointer transition-colors duration-200";
+
+            // Theme for choices
+            if (document.documentElement.classList.contains("dark")) {
+                li.classList.add("bg-gray-200", "hover:bg-gray-700");
+            } else {
+                li.classList.add("bg-gray-200", "hover:bg-gray-300");
+            }
+
+            //   checking if the answer is selected
+            // the correct answer will be green and the wrong answer will be red on selecting only it will display to user 
+            if (selectedAnswers[currentQuestionIndex]) {
+                li.classList.remove("hover:bg-gray-300", "hover:bg-gray-700");
+                if (choice === q.answer) {
+                    li.classList.add("bg-green-400", "text-white", "font-semibold", "border-2", "border-green-600");
+                }
+                if (choice === selectedAnswers[currentQuestionIndex] && choice !== q.answer) {
+                    li.classList.add("bg-red-400", "text-white", "font-semibold", "border-2", "border-red-600");
+                }
+            }
+
+            //   if the answer is correct it will count as a score
+            li.addEventListener("click", () => {
+                if (!selectedAnswers[currentQuestionIndex]) {
+                    selectedAnswers[currentQuestionIndex] = choice;
+                    if (choice === q.answer) score++;
+                    showQuestion();
+                }
+            });
+
+            choiceList.appendChild(li);
+        });
+
+        //   updating the progress bar as the question answer moving in forward
+        progressBar.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+    }
+
+    //   the whole result in shown at end of the quiz
+    function showResult() {
+        quizContainer.classList.add("hidden");
+        resultContainer.classList.remove("hidden");
+        scoreDisplay.textContent = `${score} / ${questions.length}`;
+    }
+
+    //   shuffling the choices
+    function shuffle(array) {
+        return array.sort(() => Math.random() - 0.5);
+    }
+
+    //   decoding the html for the questions
+    function decodeHTML(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
 });

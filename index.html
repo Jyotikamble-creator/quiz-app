@@ -1,25 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QuizMaster - Boost Your Brain!</title>
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gradient-to-br from-blue-100 to-purple-200 min-h-screen flex flex-col items-center justify-start">
+  <style>
+    .selected {
+      background-color: #10b981 !important;
+      color: white !important;
+    }
 
- 
-  </header>
+    /* Custom dark mode fixes for gradient background */
+    html.dark body {
+      background: linear-gradient(to bottom right, #312e81, #6d28d9) !important;
+    }
+
+    html.dark .bg-white {
+      background-color: #1f2937 !important;
+    }
+
+    html.dark .text-purple-900 {
+      color: #c4b5fd !important;
+    }
+
+    html.dark .text-blue-700 {
+      color: #60a5fa !important;
+    }
+
+    html.dark .text-gray-700 {
+      color: #d1d5db !important;
+    }
+
+    html.dark .text-gray-800 {
+      color: #f3f4f6 !important;
+    }
+
+    html.dark .bg-gray-200 {
+      background-color: #374151 !important;
+      color: #d1d5db !important;
+    }
+
+    html.dark .bg-gray-300 {
+      background-color: #4b5563 !important;
+    }
+
+    html.dark .bg-green-100 {
+      background-color: #166534 !important;
+      color: #f3f4f6 !important;
+    }
+
+    html.dark .bg-green-400 {
+      background-color: #22c55e !important;
+      color: #f3f4f6 !important;
+    }
+
+    html.dark .bg-red-400 {
+      background-color: #ef4444 !important;
+      color: #f3f4f6 !important;
+    }
+
+    html.dark .bg-blue-600 {
+      background-color: #2563eb !important;
+    }
+
+    html.dark .bg-blue-500 {
+      background-color: #3b82f6 !important;
+    }
+
+    html.dark .bg-purple-600 {
+      background-color: #7c3aed !important;
+    }
+
+    html.dark .hover\:bg-gray-300:hover {
+      background-color: #374151 !important;
+    }
+
+    html.dark .hover\:bg-gray-900:hover {
+      background-color: #111827 !important;
+    }
+
+    html.dark .hover\:bg-gray-700:hover {
+      background-color: #1f2937 !important;
+    }
+
+    html.dark .hover\:bg-blue-700:hover {
+      background-color: #1e40af !important;
+    }
+
+    html.dark .hover\:bg-blue-600:hover {
+      background-color: #2563eb !important;
+    }
+
+    html.dark .hover\:bg-purple-700:hover {
+      background-color: #6d28d9 !important;
+    }
+
+    html.dark .border-green-600 {
+      border-color: #22c55e !important;
+    }
+
+    html.dark .border-red-600 {
+      border-color: #ef4444 !important;
+    }
+
+    html.dark select,
+    html.dark option {
+      background-color: #374151 !important;
+      color: #d1d5db !important;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-gradient-to-br from-blue-100 to-purple-200 min-h-screen flex flex-col items-center justify-start transition-colors duration-300">
+
+  <!-- Dark Mode Toggle -->
+  <button id="dark-toggle"
+    class="fixed top-4 right-4 px-3 py-2 bg-gray-700 text-white rounded hover:bg-gray-900 z-50 transition">
+    🌙 Dark Mode
+  </button>
+
   <!-- HEADER -->
-  <header class="text-center mb-8 mt-10 ">
-    <h1 class="text-4xl font-extrabold text-purple-900 "> QUIZ MASTER</h1>
-    
+  <header class="text-center mb-8 mt-10">
+    <h1 class="text-4xl font-extrabold text-purple-900">QUIZ MASTER</h1>
   </header>
 
   <!-- MAIN CONTAINER -->
   <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-xl">
-  <h1 class="text-2xl font-extrabold text-blue-700 mb-2 ml-16">🚀 Boost Your Brainpower!</h1>
-  <p class="text-lg text-gray-700 mt-2 ml-12">Challenge your mind and test your knowledge!</p>
+    <h1 class="text-2xl font-extrabold text-blue-700 mb-2 ml-16">🚀 Boost Your Brainpower!</h1>
+    <p class="text-lg text-gray-700 mt-2 ml-12">Challenge your mind and test your knowledge!</p>
+
+    <!-- Filters -->
+    <div id="filters" class="space-y-2 text-center mt-4">
+      <select id="category" class="p-2 rounded border w-full max-w-xs">
+        <option value="">Select Category</option>
+        <option value="18">Computers</option>
+        <option value="9">General Knowledge</option>
+        <option value="21">Sports</option>
+      </select>
+
+      <select id="difficulty" class="p-2 rounded border w-full max-w-xs">
+        <option value="">Select Difficulty</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full max-w-xl bg-gray-300 rounded-full h-4 mt-4">
+      <div id="progress-bar" class="bg-green-500 h-4 rounded-full transition-all duration-300" style="width: 0%;"></div>
+    </div>
+
+    <!-- Timer -->
+    <div class="text-xl font-semibold text-center my-2" id="timer">⏳ Time Left: 00:00</div>
+
     <!-- START BUTTON -->
     <div id="start-section" class="text-center">
       <button id="start-btn"
@@ -35,27 +172,29 @@
       </div>
       <ul id="choice-list" class="space-y-3 mb-4"></ul>
 
+      <!-- buttons for the questions -->
       <div class="flex justify-between">
         <button id="previous-btn"
-          class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 disabled:opacity-50"
-          disabled>Previous</button>
+          class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 disabled:opacity-50 transition" disabled>
+          Previous
+        </button>
         <button id="next-btn"
-          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
-          disabled>Next</button>
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50 transition" disabled>
+          Next
+        </button>
       </div>
     </div>
 
     <!-- SCORE SECTION -->
-    <div id="result-container" class="hidden text-center mt-6">
-      <h2 class="text-xl font-bold text-green-700">Your Score:</h2>
-      <p id="score" class="text-2xl font-bold text-black my-2"></p>
+    <div id="result-container" class="hidden bg-green-100 p-6 rounded text-center mt-4">
+      <h2 class="text-2xl font-bold">🎉 Quiz Complete!</h2>
+      <p class="text-lg mt-2">Your score: <span id="score"></span></p>
       <button id="restart-btn"
-        class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 mt-4">
-        Restart Quiz
-      </button>
+        class="mt-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition">Restart Quiz</button>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
